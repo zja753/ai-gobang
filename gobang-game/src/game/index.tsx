@@ -1,75 +1,11 @@
 import React, { useMemo } from 'react'
+import { LatticeStatus } from './constants';
+import Gobang from './gobang';
+import { IChessboardRenderProps, IGameRenderProps } from './interface';
 
-/** 棋盘大小 */
-const CHESS_BOARD_SIZE = 15;
-
-/** 棋盘格的状态类型 */
-enum LatticeStatus { Empty, Black, White };
-
-/**
- * 五子棋游戏类
- */
-class Gobang {
-    /** 棋盘 */
-    chessboard: LatticeStatus[][]
-
-    player: [blackPlayer: Player, whitePlayer: Player]
-
-    constructor() {
-        this.chessboard = new Array(CHESS_BOARD_SIZE).fill(0).map(() => new Array(CHESS_BOARD_SIZE).fill(LatticeStatus.Empty));
-        this.player = [
-            new Player({
-                gobang: this,
-                piece: LatticeStatus.Black
-            }),
-            new Player({
-                gobang: this,
-                piece: LatticeStatus.White
-            })
-        ]
-    }
-
-    /** 行棋 */
-    play(player: Player, position: [x: number, y: number]) {
-        const [x, y] = position;
-        this.chessboard[x][y] = player.piece;
-        return this.checkForVictory(player);
-    }
-
-    /**
-     * TODO：判断玩家是否胜利
-     */
-    checkForVictory(player: Player) {
-        return false;
-    }
-}
-
-/**
- * 玩家类
- */
-class Player {
-
-    /** 游戏对局 */
-    gobang: Gobang
-
-    /** 玩家名称 */
-    piece: LatticeStatus
-
-    constructor(props: { gobang: Gobang, piece: LatticeStatus }) {
-        this.gobang = props.gobang;
-        this.piece = props.piece;
-    }
-
-    play(position: [x: number, y: number]) {
-        return this.gobang.play(this, position)
-    }
-
-}
-
-function ChessboardRender(props: { chessboard: Gobang['chessboard'] }) {
+function ChessboardRender(props: IChessboardRenderProps) {
 
     const { chessboard } = props;
-
 
     const renderCell = (status: LatticeStatus) => {
         return <div style={{
@@ -80,7 +16,6 @@ function ChessboardRender(props: { chessboard: Gobang['chessboard'] }) {
             {status}
         </div>
     }
-
 
     return <div style={{
         border: "1px solid #000",
@@ -95,10 +30,7 @@ function ChessboardRender(props: { chessboard: Gobang['chessboard'] }) {
     </div>
 }
 
-
-
-
-export default function GameRender() {
+export default function GameRender(props: IGameRenderProps) {
 
     const gobang = useMemo(() => {
         return new Gobang();
