@@ -1,5 +1,6 @@
 import { LatticeStatus } from "./constants";
 import Gobang from "./gobang";
+import { Position } from "./interface";
 
 /**
  * 玩家类
@@ -17,7 +18,7 @@ export default class Player {
         this.piece = props.piece;
     }
 
-    play(position: [x: number, y: number]) {
+    play(position: Position) {
         return this.gobang.play(this, position)
     }
 

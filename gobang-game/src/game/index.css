@@ -1,0 +1,40 @@
+.chessboard {
+    border: 1px solid #000
+}
+
+.chessboard .row {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+.chessboard .row .cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+
+    position: relative;
+}
+
+.chessboard .row .cell .interact-point {
+    position: absolute;
+    right: -15px;
+    bottom: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    z-index: 10;
+}
+
+.chessboard .row .cell .interact-point-empty {
+    cursor: pointer;
+}
+
+.chessboard .row .cell .interact-point-black {
+    background-color: #000;
+}
+
+.chessboard .row .cell .interact-point-white {
+    background-color: #fff;
+    border: 1px solid #000;
+}
