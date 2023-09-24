@@ -60,7 +60,11 @@ export default function GameRender(props: IGameRenderProps) {
      * 落子然后换边
      */
     const handlePut: IChessboardRenderProps['onPut'] = (position) => {
-        curPlayer.current.play(position);
+        const win = curPlayer.current.play(position);
+
+        if (win) {
+            message.success(`${curPlayer.current.piece}方胜利!`);
+        }
 
         if (curPlayer.current.piece === LatticeStatus.Black) {
             curPlayer.current = gobang.player.whitePlayer;

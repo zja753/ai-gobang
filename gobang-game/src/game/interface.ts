@@ -9,4 +9,6 @@ export interface IChessboardRenderProps {
     onPut: (position: Position) => void
 }
 
+/** 坐标 */
 export type Position = [x: number, y: number];
+
