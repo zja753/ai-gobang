@@ -1,0 +1,11 @@
+{
+  "name": "ai-gobang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd gobang-game && npm run start"
+  },
+  "author": "jidan.wd",
+  "license": "ISC"
+}
